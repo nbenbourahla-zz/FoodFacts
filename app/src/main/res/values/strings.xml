@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">FoodFacts</string>
+    <string name="bar_code_input_hint">Entrer le code bar</string>
+    <string name="bar_code_button_text">Rechercher</string>
+    <string name="or">ou</string>
+    <string name="scan_bar_code_button_text">Scanner un code bar</string>
+    <string name="bar_code_text_error">Le texte saisi est incorrect</string>
+
+
+    <string name="product_name">%s</string>
+    <string name="product_brand">Marque: %s</string>
+    <string name="product_quantity">Quantité : %s</string>
+    <string name="product_energy">Energie (Kcal) : %s</string>
+    <string name="product_ingredients_title">Ingredients :</string>
+    <string name="product_ingredients_name">\u2713 %s</string>
+    <string name="menu_navigation_scan">Scan</string>
+    <string name="menu_navigation_history">History</string>
+</resources>

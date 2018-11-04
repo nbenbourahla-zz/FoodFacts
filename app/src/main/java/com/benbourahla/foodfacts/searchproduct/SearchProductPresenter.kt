@@ -2,12 +2,14 @@ package com.benbourahla.foodfacts.searchproduct
 
 import android.support.design.widget.Snackbar
 import android.util.Log
+import com.benbourahla.foodfacts.PRODUCT_NOT_FOUND
 import com.benbourahla.foodfacts.R
 import com.benbourahla.foodfacts.api.ProductRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.internal.schedulers.IoScheduler
 import io.reactivex.schedulers.Schedulers
+import java.lang.IllegalStateException
 import javax.inject.Inject
 
 class SearchProductPresenter @Inject constructor(val productRepository: ProductRepository) {
@@ -17,10 +19,6 @@ class SearchProductPresenter @Inject constructor(val productRepository: ProductR
 
     fun bind(screen: SearchProductScreen) {
         this.screen = screen
-    }
-
-    fun onScreenStarted() {
-
     }
 
     fun onSearchButtonClicked(codeBarText: String?) {
@@ -36,16 +34,16 @@ class SearchProductPresenter @Inject constructor(val productRepository: ProductR
                 AndroidSchedulers.mainThread()
         ).subscribeOn(Schedulers.io()).subscribe(
                 {
-                    screen?.goToNextScreen(it)
+                    if (it.status == PRODUCT_NOT_FOUND) {
+                        screen?.displayError(IllegalStateException("Product Not Found"))
+                    } else {
+                        screen?.goToNextScreen(it)
+                    }
                 },
                 {
                     screen?.displayError(it)
                 }
         ))
-    }
-
-    fun onScreenDestroyed() {
-
     }
 
     fun unbind() {

@@ -30,7 +30,9 @@
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/product_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:gravity="left"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:layout_marginRight="20dp"

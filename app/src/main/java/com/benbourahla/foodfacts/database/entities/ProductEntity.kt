@@ -4,8 +4,8 @@ import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
-@Entity(tableName = "Product")
-data class Product(
+@Entity(tableName = "ProductEntity")
+data class ProductEntity(
         @PrimaryKey(autoGenerate = false) val code: String,
         @ColumnInfo(name = "status") val statusVerbose:String,
         @ColumnInfo(name = "id") val id: String,

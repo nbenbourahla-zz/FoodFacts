@@ -5,13 +5,11 @@ import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.*
-import com.benbourahla.foodfacts.BottomBarActivity
+import com.benbourahla.foodfacts.PRODUCT_INFORMATION_EXTRA
 import com.benbourahla.foodfacts.R
 import com.benbourahla.foodfacts.database.CacheModule
 import com.benbourahla.foodfacts.model.ProductInformation
-import com.benbourahla.foodfacts.searchproduct.DaggerSearchProductComponent
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.notification_template_lines_media.view.*
 import javax.inject.Inject
 
 class ProductDetailsActivity: AppCompatActivity(), ProductDetailsScreen {
@@ -24,7 +22,7 @@ class ProductDetailsActivity: AppCompatActivity(), ProductDetailsScreen {
     val productEnergy by lazy { findViewById<TextView>(R.id.product_energy) }
     val productIngredients by lazy { findViewById<LinearLayout>(R.id.product_ingredients) }
 
-    private val productInformation by lazy { intent?.getParcelableExtra<ProductInformation>("product_information_extra") }
+    private val productInformation by lazy { intent?.getParcelableExtra<ProductInformation>(PRODUCT_INFORMATION_EXTRA) }
 
     @Inject
     lateinit var presenter: ProductDetailsPresenter
@@ -77,7 +75,7 @@ class ProductDetailsActivity: AppCompatActivity(), ProductDetailsScreen {
         productQuantity.text = resources.getString(R.string.product_quantity, quantity)
     }
 
-    override fun displayProductEnergie(energyValue: String?) {
+    override fun displayProductEnergy(energyValue: String?) {
         productEnergy.text = resources.getString(R.string.product_energy, energyValue)
     }
 
@@ -88,9 +86,11 @@ class ProductDetailsActivity: AppCompatActivity(), ProductDetailsScreen {
     }
 
     override fun displayProductIngredient(name: String) {
-        val ingredientText = layoutInflater.inflate(R.layout.ingredient_layout, null) as TextView
-        ingredientText.text = resources.getString(R.string.product_ingredients_name, name)
-        productIngredients.addView(ingredientText)
+        if (name.isNotEmpty()) {
+            val ingredientText = layoutInflater.inflate(R.layout.ingredient_layout, null) as TextView
+            ingredientText.text = resources.getString(R.string.product_ingredients_name, name)
+            productIngredients.addView(ingredientText)
+        }
     }
 
     override fun onStop() {

@@ -4,13 +4,13 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import com.benbourahla.foodfacts.database.entities.Product
+import com.benbourahla.foodfacts.database.entities.ProductEntity
 import com.benbourahla.foodfacts.database.entities.ProductDao
 
-@Database(entities = arrayOf(Product::class), version = 1)
+@Database(entities = arrayOf(ProductEntity::class), version = 2)
 abstract class ProductDatabase : RoomDatabase() {
 
-    abstract fun weatherDataDao(): ProductDao
+    abstract fun productDataDao(): ProductDao
 
     companion object {
         private var INSTANCE: ProductDatabase? = null

@@ -7,12 +7,12 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class CacheModule(val context: Context) {
+class CacheModule(private val context: Context) {
 
     @Provides
     @Singleton
     fun provideDao(): ProductDao {
-        return ProductDatabase.getInstance(context)?.weatherDataDao()!!
+        return ProductDatabase.getInstance(context)?.productDataDao()!!
     }
 
     @Provides

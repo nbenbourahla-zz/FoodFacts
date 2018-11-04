@@ -5,7 +5,7 @@ interface ProductDetailsScreen {
     fun displayProductTitle(productName: String)
     fun displayProductBrand(brand: String)
     fun displayProductQuantity(quantity: String)
-    fun displayProductEnergie(energyValue: String?)
+    fun displayProductEnergy(energyValue: String?)
     fun displayProductIngredientsTitle()
     fun displayProductIngredient(name: String)
 }

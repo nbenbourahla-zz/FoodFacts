@@ -4,15 +4,15 @@ import android.arch.persistence.room.*
 
 @Dao
 interface ProductDao {
-    @Query("SELECT * FROM Product")
-    fun getAll(): List<Product>
+    @Query("SELECT * FROM ProductEntity")
+    fun getAll(): List<ProductEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(product: Product)
+    fun insert(productEntity: ProductEntity)
 
     @Update
-    fun update(product: Product)
+    fun update(productEntity: ProductEntity)
 
     @Delete
-    fun delete(vararg products: Product)
+    fun delete(vararg productEntities: ProductEntity)
 }

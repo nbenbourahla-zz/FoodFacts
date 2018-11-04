@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toolbar
 import com.benbourahla.foodfacts.BottomBarActivity
+import com.benbourahla.foodfacts.PRODUCT_INFORMATION_EXTRA
 import com.benbourahla.foodfacts.R
 import com.benbourahla.foodfacts.database.CacheModule
 import com.benbourahla.foodfacts.model.ProductInformation
@@ -22,7 +23,6 @@ class SearchProductActivity: BottomBarActivity(), SearchProductScreen {
     val containerLayout by lazy { findViewById<ConstraintLayout>(R.id.search_product_container) }
     val codeBarEditText by lazy { findViewById<EditText>(R.id.code_bar_edit) }
     val searchButton by lazy { findViewById<Button>(R.id.search_button) }
-    val scanButton by lazy { findViewById<Button>(R.id.scan_button) }
     val textInputLayout by lazy { findViewById<TextInputLayout>(R.id.code_bar_input_layout) }
 
     @Inject
@@ -43,8 +43,6 @@ class SearchProductActivity: BottomBarActivity(), SearchProductScreen {
     override fun onStart() {
         super.onStart()
 
-        presenter.onScreenStarted()
-
         searchButton.setOnClickListener {
             presenter.onSearchButtonClicked(codeBarEditText.text.toString())
         }
@@ -55,19 +53,13 @@ class SearchProductActivity: BottomBarActivity(), SearchProductScreen {
     }
 
     override fun displayError(error: Throwable?) {
-        Snackbar.make(containerLayout, "Une erreur est survenue, veuillez réessayer", Snackbar.LENGTH_LONG).show()
-        Log.e("SearchProductPresenter", "Une erreur est survenuee", error)
+        Snackbar.make(containerLayout, getString(R.string.search_product_error), Snackbar.LENGTH_LONG).show()
     }
 
     override fun goToNextScreen(it: ProductInformation?) {
         val intent = Intent(this, ProductDetailsActivity::class.java)
-        intent.putExtra("product_information_extra", it)
+        intent.putExtra(PRODUCT_INFORMATION_EXTRA, it)
         startActivity(intent)
-    }
-
-    override fun onStop() {
-        presenter.onScreenDestroyed()
-        super.onStop()
     }
 
     override fun onDestroy() {

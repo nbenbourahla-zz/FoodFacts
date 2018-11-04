@@ -15,4 +15,9 @@
     <string name="product_ingredients_name">\u2713 %s</string>
     <string name="menu_navigation_scan">Scan</string>
     <string name="menu_navigation_history">History</string>
+    <string name="search_history_empty_state">Vous n\'avez pas d\'historique</string>
+    <string name="search_history_title">Votre historique de recherche :</string>
+    <string name="history_activity_title">Votre historique de recherche</string>
+    <string name="search_product_title">Rechercher un produit</string>
+    <string name="search_product_error">Une erreur est survenue, veuillez réessayer</string>
 </resources>

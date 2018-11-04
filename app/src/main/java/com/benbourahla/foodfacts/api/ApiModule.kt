@@ -16,8 +16,7 @@ class ApiModule {
     @Singleton
     fun provideOkhttpClient(): OkHttpClient {
         val okhttpBuilder = OkHttpClient.Builder()
-        okhttpBuilder.networkInterceptors()
-                .add(StethoInterceptor())
+        okhttpBuilder.addNetworkInterceptor(StethoInterceptor())
         return okhttpBuilder.build()
     }
 
@@ -26,9 +25,9 @@ class ApiModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
             Retrofit.Builder()
                     .baseUrl("http://world.openfoodfacts.org/")
-                    .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .client(okHttpClient)
                     .build()
 
     @Provides

@@ -7,6 +7,6 @@
         android:layout_height="wrap_content"
         android:background="@color/blue"
         app:itemBackground="@color/blue"
-        app:itemIconTint="#FFF"
-        app:itemTextColor="#FFF"
+        app:itemIconTint="@drawable/bottom_bar_selector"
+        app:itemTextColor="@drawable/bottom_bar_selector"
         app:menu="@menu/navigation"/>

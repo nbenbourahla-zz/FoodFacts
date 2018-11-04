@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Product(@SerializedName("id") val id: String,
                    @SerializedName("brands") val brands: String,
-                   @SerializedName("ingredients") val Ingredients: List<Ingredient>,
+                   @SerializedName("ingredients") val ingredients: List<Ingredient>,
                    @SerializedName("product_name") val productName: String,
                    @SerializedName("image_front_small_url") val imageFrontSmallUrl: String,
                    @SerializedName("quantity") val quantity: String,

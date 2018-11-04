@@ -2,6 +2,7 @@ package com.benbourahla.foodfacts.searchproduct
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
 import android.support.design.widget.Snackbar
 import android.support.design.widget.TextInputLayout
 import android.util.Log
@@ -18,6 +19,7 @@ import javax.inject.Inject
 
 class SearchProductActivity: BottomBarActivity(), SearchProductScreen {
 
+    val containerLayout by lazy { findViewById<ConstraintLayout>(R.id.search_product_container) }
     val codeBarEditText by lazy { findViewById<EditText>(R.id.code_bar_edit) }
     val searchButton by lazy { findViewById<Button>(R.id.search_button) }
     val scanButton by lazy { findViewById<Button>(R.id.scan_button) }
@@ -53,7 +55,7 @@ class SearchProductActivity: BottomBarActivity(), SearchProductScreen {
     }
 
     override fun displayError(error: Throwable?) {
-        Snackbar.make(container, "Une erreur est survenue, veuillez réessayer", Snackbar.LENGTH_LONG)
+        Snackbar.make(containerLayout, "Une erreur est survenue, veuillez réessayer", Snackbar.LENGTH_LONG).show()
         Log.e("SearchProductPresenter", "Une erreur est survenuee", error)
     }
 

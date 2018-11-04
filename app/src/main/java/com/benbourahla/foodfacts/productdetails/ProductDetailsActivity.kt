@@ -1,7 +1,9 @@
 package com.benbourahla.foodfacts.productdetails
 
 import android.os.Bundle
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.widget.*
 import com.benbourahla.foodfacts.BottomBarActivity
 import com.benbourahla.foodfacts.R
@@ -14,7 +16,7 @@ import javax.inject.Inject
 
 class ProductDetailsActivity: AppCompatActivity(), ProductDetailsScreen {
 
-
+    val toolbar by lazy { findViewById<Toolbar>(R.id.toolbar) }
     val productPicture by lazy { findViewById<ImageView>(R.id.product_picture) }
     val productTitle by lazy { findViewById<TextView>(R.id.product_name) }
     val productBrand by lazy { findViewById<TextView>(R.id.product_brand) }
@@ -32,11 +34,24 @@ class ProductDetailsActivity: AppCompatActivity(), ProductDetailsScreen {
 
         setContentView(R.layout.activity_product_details)
 
+        setSupportActionBar(toolbar)
+
+        setupActionbar()
+
         DaggerProductDetailsComponent.builder()
                 .cacheModule(CacheModule(this)).build().
                         inject(this)
 
         presenter.bind(this)
+    }
+
+    private fun setupActionbar() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        toolbar?.apply {
+            navigationIcon = ResourcesCompat.getDrawable(resources, R.drawable.ic_back_arrow_white, null)
+        }
+        toolbar?.setNavigationOnClickListener { finish() }
     }
 
     override fun onStart() {
@@ -50,6 +65,7 @@ class ProductDetailsActivity: AppCompatActivity(), ProductDetailsScreen {
     }
 
     override fun displayProductTitle(productName: String) {
+        supportActionBar?.title = productName
         productTitle.text = resources.getString(R.string.product_name, productName)
     }
 

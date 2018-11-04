@@ -31,9 +31,9 @@ class ProductDetailsPresenter @Inject constructor(val productRepository: Product
         if (product.nutriments.containsKey("energy_value")) {
             screen?.displayProductEnergie(product.nutriments["energy_value"])
         }
-        if (product.Ingredients.isNotEmpty()) {
+        if (product.ingredients.isNotEmpty()) {
             screen?.displayProductIngredientsTitle()
-            for (ingredient in product.Ingredients) {
+            for (ingredient in product.ingredients) {
                 screen?.displayProductIngredient(ingredient.name)
             }
         }

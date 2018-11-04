@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_layout"
             layout="@layout/toolbar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="50dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar_layout" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/product_name"

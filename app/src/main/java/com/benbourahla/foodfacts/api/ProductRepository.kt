@@ -11,8 +11,12 @@ class ProductRepository @Inject constructor(val productService: ProductService,
                                             val productCache: ProductCache) {
 
     fun getProduct(barcode: String): Single<ProductInformation> {
-        return productService.getProduct(barcode).doOnSuccess {
-            productCache.insert(it)
+        val productInCache =  productCache.contains(barcode)
+        if (productInCache != null) {
+            return Single.just(productInCache)
+         } else {
+             return productService.getProduct(barcode).doOnSuccess {
+                 productCache.insert(it)}
         }
     }
 }

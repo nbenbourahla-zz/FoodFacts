@@ -6,7 +6,7 @@ import com.benbourahla.foodfacts.model.ProductInformation
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class ProductDetailsPresenter @Inject constructor(val productRepository: ProductRepository) {
+class ProductDetailsPresenter @Inject constructor() {
 
     private var screen: ProductDetailsScreen? = null
     private val compositeDisposable by lazy { CompositeDisposable() }

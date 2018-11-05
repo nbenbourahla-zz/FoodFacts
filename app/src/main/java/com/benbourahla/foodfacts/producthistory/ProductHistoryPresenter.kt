@@ -6,7 +6,7 @@ import com.benbourahla.foodfacts.productdetails.ProductDetailsScreen
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class ProductHistoryPresenter @Inject constructor(val productRepository: ProductRepository) {
+class ProductHistoryPresenter @Inject constructor(private val productRepository: ProductRepository) {
 
     private var screen: ProductHistoryScreen? = null
 

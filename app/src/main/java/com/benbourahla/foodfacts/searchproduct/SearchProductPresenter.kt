@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import java.lang.IllegalStateException
 import javax.inject.Inject
 
-class SearchProductPresenter @Inject constructor(val productRepository: ProductRepository) {
+class SearchProductPresenter @Inject constructor(private val productRepository: ProductRepository) {
 
     private var screen: SearchProductScreen? = null
     private val compositeDisposable by lazy { CompositeDisposable() }
